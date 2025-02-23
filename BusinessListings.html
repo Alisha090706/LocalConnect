@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Listings</title>
+    <link rel="stylesheet" href="BusinessListings.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="navlogo border">
+                <div class="logo">  
+                </div>
+            </div>
+            <!-- Home (Current page)
+            Browse Businesses (Takes users to Business Listings Page)
+            Add Business (For business owners to list their store)
+            Login/Sign Up   -->
+            
+            <div class="navsearch border">
+                <a href="homepage.html">Home</a>
+                <a href="dashboard.html">My Account</a>
+                <a href="BusinessListings.html">Browse Business</a>
+                <a href="addbusiness.html">Add Business</a>
+                
+            </div>
+        </div>
+    </header>
+
+    <h1>Business Listings</h1>
+
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" class="search-bar" placeholder="Search for a business..." onkeyup="filterBusinesses()">
+
+    <!-- Category Filters -->
+    <div class="filters">
+        <button class="filter-btn" onclick="filterCategory('All')">All</button>
+        <button class="filter-btn" onclick="filterCategory('Food')">Food</button>
+        <button class="filter-btn" onclick="filterCategory('Clothing')">Clothing</button>
+        <button class="filter-btn" onclick="filterCategory('Electronics')">Electronics</button>
+    </div>
+
+    <!-- Business Grid -->
+    <div class="business-grid" id="businessGrid">
+        <div class="business-card" data-category="Food">
+            <img src="images/bistrocafe.jpg" alt="Food Business" class="business-logo">
+            <h3>Yummy Bites</h3>
+            <p>Food That Reminds Your Of Your Mother.</p>
+            <a href="bakery.html" class="view-details">View Details</a>
+        </div>
+        <div class="business-card" data-category="Clothing">
+            <img src="images/fashion.jpg" alt="Clothing Business" class="business-logo">
+            <h3>Trendy Threads</h3>
+            <p>Make It To The High Fashion!</p>
+            <a href="#" class="view-details">View Details</a>
+        </div>
+        <div class="business-card" data-category="Electronics">
+            <img src="images/headphones.jpg" alt="Electronics Business" class="business-logo">
+            <h3>Tech Haven</h3>
+            <p>Latest gadgets at your fingertips.</p>
+            <a href="#" class="view-details">View Details</a>
+        </div>
+    </div>
+
+    <script>
+        function filterBusinesses() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let cards = document.getElementsByClassName("business-card");
+
+            for (let card of cards) {
+                let name = card.getElementsByTagName("h3")[0].innerText.toLowerCase();
+                if (name.includes(input)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+
+        function filterCategory(category) {
+            let cards = document.getElementsByClassName("business-card");
+
+            for (let card of cards) {
+                let cardCategory = card.getAttribute("data-category");
+
+                if (category === "All" || cardCategory === category) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
